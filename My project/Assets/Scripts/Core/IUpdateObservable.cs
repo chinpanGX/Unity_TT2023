@@ -14,6 +14,6 @@ namespace Core
         /// </summary>
         /// <param name="updateOrder"> 更新順番 </param>
         /// <returns></returns>
-        IObservable<uint> OnUpdate(int updateOrder);
+        IObservable<Unit> OnUpdate(int updateOrder);
      }
 }
