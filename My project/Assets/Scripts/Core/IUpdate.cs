@@ -7,7 +7,7 @@ namespace Core
     /// 更新イベント購読するインターフェース
     /// Author : 出合翔太
     /// </summary>
-     public interface IUpdateObservable : IFeature
+     public interface IUpdate : IFeature
      {
         /// <summary>
         /// イベント購読

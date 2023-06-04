@@ -10,7 +10,7 @@ using UniRx;
 /// </summary>
 namespace Core
 {
-    public class BaseCustomComponentBehaviour : MonoBehaviour, ICustomComponent
+    public abstract class BaseCustomComponentBehaviour : MonoBehaviour, ICustomComponent
     {
         /// <summary>
         /// 集約元のコンテナクラス

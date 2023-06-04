@@ -5,36 +5,32 @@ using System;
 using UniRx;
 using UniRx.Triggers;
 using Core;
-using UnityEditor;
 
 
 /// <summary>
-/// XV§Œäˆ—‚ğs‚¤
-/// Author : o‡ãÄ‘¾
+/// æ›´æ–°ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+/// Author : å‡ºåˆç¿”å¤ª
 /// </summary>
 namespace Game
-{
-    /// <summary>
-    /// 
-    /// </summary>
-    public class UpdateFeature : BaseCustomComponentCshape, IUpdateObservable, IUpdater
+{    
+    public class UpdateFeature : BaseCustomComponentCshape, IUpdate, IUpdater
     {
-        // XVƒXƒgƒŠ[ƒ€
+        // æ›´æ–°ã‚¹ãƒˆãƒªãƒ¼ãƒ 
         readonly SortedDictionary<int, ISubject<Unit>> updateStreams = new SortedDictionary<int, ISubject<Unit>>();
 
         public override void Add(ICustomComponentContainer owner)
         {
             base.Add(owner);
-            owner.AddInterface<IUpdateObservable>(this);
+            owner.AddInterface<IUpdate>(this);
             owner.AddInterface<IUpdater>(this);
         }
         
         /// <summary>
-        /// UpdateƒCƒxƒ“ƒg‚Ìæ“¾
+        /// Updateã‚¤ãƒ™ãƒ³ãƒˆã®å–å¾—
         /// </summary>
-        /// <param name="updateOrder"> XV‡ </param>
-        /// <returns> XV‚·‚éObeservable </returns>
-        IObservable<Unit> IUpdateObservable.OnUpdate(int updateOrder)
+        /// <param name="updateOrder"> æ›´æ–°é †åº </param>
+        /// <returns> UpdateObeservable </returns>
+        IObservable<Unit> IUpdate.OnUpdate(int updateOrder)
         {
             if(updateStreams.TryGetValue(updateOrder, out var update))
             {
@@ -42,7 +38,7 @@ namespace Game
             }
             else
             {
-                // ƒCƒxƒ“ƒg‚ªƒXƒgƒŠ[ƒ€‚É‚È‚¢ê‡A’Ç‰Á‚·‚é
+                // ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«ãªã„å ´åˆã€è¿½åŠ ã™ã‚‹
                 Subject<Unit> newSteam = new Subject<Unit>();
                 updateStreams.Add(updateOrder, newSteam);
                 return newSteam;
@@ -50,7 +46,7 @@ namespace Game
         }
 
         /// <summary>
-        /// UpdateƒCƒxƒ“ƒg‚Ì”­s
+        /// Updateã‚¤ãƒ™ãƒ³ãƒˆã®ç™ºè¡Œ
         /// </summary>
         void IUpdater.UpdateStreams()
         {

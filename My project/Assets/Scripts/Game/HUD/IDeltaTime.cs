@@ -6,6 +6,7 @@ using Core;
 
 /// <summary>
 /// DeltaTimeのインターフェース
+/// Author : 出合翔太
 /// </summary>
 namespace Game
 {
